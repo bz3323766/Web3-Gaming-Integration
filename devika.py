@@ -8,28 +8,28 @@ from src.init import init_devika
 init_devika()
 
 
+import logging
 from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
-from src.socket_instance import socketio, emit_agent
-import os
-import logging
 from threading import Thread
+import os
+from src.socket_instance import socketio, emit_agent
 import tiktoken
 
-from src.apis.project import project_bp
-from src.config import Config
-from src.logger import Logger, route_logger
 from src.project import ProjectManager
-from src.state import AgentState
-from src.agents import Agent
 from src.llm import LLM
+from src.apis.project import project_bp
 
+from src.logger import Logger, route_logger
+from src.config import Config
+from src.agents import Agent
+from src.state import AgentState
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": # Change the origin to your frontend URL
                              [
-                                 "https://localhost:3000",
-                                 "http://localhost:3000",
+                                 "https://localhost:1111",
+                                 "http://localhost:1111",
                                  ]}}) 
 app.register_blueprint(project_bp)
 socketio.init_app(app)
